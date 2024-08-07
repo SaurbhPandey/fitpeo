@@ -11,7 +11,7 @@ import {
   faCog,
   faChevronLeft,
   faChevronRight,
-  faGrid2
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = ({ setIsOpen }) => {
@@ -35,26 +35,35 @@ const Sidebar = ({ setIsOpen }) => {
 
   return (
     <div className="flex">
+      {/* Hamburger Icon for Mobile */}
+      <div className="lg:hidden">
+        <button
+          className="p-2"
+          onClick={() => {
+            setOpen(!open);
+            setIsOpen(!open);
+          }}
+        >
+          <FontAwesomeIcon icon={faBars} className="text-white" />
+        </button>
+      </div>
+
       <div
-        className={` w-full
-         bg-dark-gray h-screen p-5 pt-8 relative duration-300 flex flex-col justify-between`}
+        className={`fixed top-0 left-0 z-50 h-screen w-64 bg-dark-gray p-5 pt-8 duration-300 transform ${
+          open ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 lg:relative lg:w-full flex flex-col justify-between`}
       >
         {/* Top Section */}
         <div>
           <div className="flex gap-x-4 items-center">
-            {/* <img
-              src="../assets/logo.png"
-              className={`cursor-pointer duration-500 ${
-                open && "rotate-[360deg]"
-              }`}
-            /> */}
-            <FontAwesomeIcon  icon="fa-solid fa-grid-2"  className={`cursor-pointer duration-500 ${
-                open && "rotate-[360deg]"
-              }`}/>
+            <FontAwesomeIcon
+              icon="fa-solid fa-grid-2"
+              className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
+            />
             <h1
               className={`text-white origin-left font-medium text-xl duration-200 ${
                 !open && "scale-0"
-              } text-white`}
+              }`}
             >
               Analytics
             </h1>
@@ -65,9 +74,9 @@ const Sidebar = ({ setIsOpen }) => {
               <li
                 key={index}
                 onClick={() => handleItemClick(index)}
-                className={`flex rounded-md p-2 cursor-pointer text-gray-300 text-sm items-center gap-x-4
-                ${menu.gap ? "mt-9" : "mt-2"}
-                ${
+                className={`flex rounded-md p-2 cursor-pointer text-gray-300 text-sm items-center gap-x-4 ${
+                  menu.gap ? "mt-9" : "mt-2"
+                } ${
                   activeIndex === index
                     ? "bg-light-white"
                     : "hover:bg-light-white"
@@ -100,6 +109,14 @@ const Sidebar = ({ setIsOpen }) => {
           </button>
         </div>
       </div>
+
+      {/* Overlay for closing the sidebar */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 lg:hidden"
+          onClick={() => setOpen(false)}
+        />
+      )}
     </div>
   );
 };
