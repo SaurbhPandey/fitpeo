@@ -77,7 +77,7 @@ const Status = () => {
           <div className="flex flex-col items-center lg:items-start lg:mr-4">
             <h1 className="text-white mt-3 font-semibold text-center lg:text-left">Net Profit</h1>
             <div className="flex flex-col items-center lg:items-start lg:mt-4">
-              <h1 className="font-bold text-3xl mt-2 lg:mt-0">$6759.25</h1>
+              <h1 className="font-bold text-3xl mt-2 lg:mt-0 text-white">$6759.25</h1>
               <div className="flex items-center mt-2">
                 <img src={Increase} alt="Increase" className="w-4 h-4" />
                 <h1 className="text-green-500 ml-2">3%</h1>
